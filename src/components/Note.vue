@@ -37,21 +37,16 @@
     const noteStore = useNoteStore();
 
     const note_form = ref({
+        id: props.id,
         title: props.title,
         content: props.content
     });
 
     const createOrEdidNote = () => {
-        const formData = {
-            id: props.id,
-            title: note_form.value.title,
-            content: note_form.value.content
-        }
-        
         if (props.id !== ''){
-            noteStore.updateNote(formData);
+            noteStore.updateNote(note_form.value);
         } else {
-            noteStore.createNote(formData);
+            noteStore.createNote(note_form.value);
         }
     }
 

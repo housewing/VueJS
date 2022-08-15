@@ -40,8 +40,17 @@ export const useNoteStore = defineStore('note', () => {
 
     const deleteNote = async (formData) => {
         try {
-            const res = await axios.post('http://localhost:8000/deleteNote', formData);
-            console.log(res.data);
+            if (confirm('Delete or not?')) {
+                const idx = noteList.value.findIndex((val) => {
+                    return val.id === formData.id;
+                });
+                
+                if (idx > -1) {
+                    noteList.value.splice(idx, 1)
+                    const res = await axios.post('http://localhost:8000/deleteNote', formData);
+                    console.log(res.data);
+                };
+            }
         } catch(error) {
             console.log(error)
             console.log("delete note error");

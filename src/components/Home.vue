@@ -43,7 +43,7 @@
                         <img src="../assets/pencil.svg" width="16" height="16"/>
                     </router-link>
                      | 
-                    <img src="../assets/trash.svg" width="16" height="16" @click.prevent="deleteNote(note)"/>
+                    <img src="../assets/trash.svg" width="16" height="16" @click.prevent="noteStore.deleteNote(note)"/>
                 </td>
             </tr>
         </table>
@@ -67,18 +67,6 @@
 
     userInfo();
     getNotes();
-
-    const deleteNote = (note) => {
-        if (confirm('Delete or not?')) {
-            const formData = {
-                id: note.id,
-                title: note.title,
-                content: note.content
-            }
-            noteStore.deleteNote(formData);
-        }
-        getNotes();
-    }
 
 </script>
 
